@@ -47,7 +47,7 @@ systemctl start mongod &>> LOGFILE
 
 VALIDATE $? "Starting mongodb"
 
-sed -i 's/127.0.0.1/0.0.0.0/g' etc/mongod.conf &>> LOGFILE
+sed -i 'S/127.0.0.1/0.0.0.0/g' etc/mongod.conf &>> LOGFILE
 
 VALIDATE $? remote acress to mongo db
 
