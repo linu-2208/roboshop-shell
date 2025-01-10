@@ -10,7 +10,7 @@ Y="\e[33m"
 TIMESTAMP=$(date +%F-%H-%S)
 LOGFILE="/tmp/$0-$TIMESTAMP.log"
 
-echo "script stareted executing at $TIMESTAMP" &>> LOGFILE
+echo "script stareted executing at $TIMESTAMP" &>> $LOGFILE
 
 
 VALIDATE(){
@@ -31,26 +31,26 @@ else
     echo "You are root user"
  fi   
 
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> LOGFILE
+cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
 
 VALIDATE $? "copied mongo db repo"
 
-dnf install mongodb-org -y &>> LOGFILE
+dnf install mongodb-org -y &>> $LOGFILE
 
 VALIDATE $? "Installing mongodb"
 
-systemctl enable mongod &>> LOGFILE
+systemctl enable mongod &>> $LOGFILE
 
 VALIDATE $? "enabling mongodb"
 
-systemctl start mongod &>> LOGFILE
+systemctl start mongod &>> $LOGFILE
 
 VALIDATE $? "Starting mongodb"
 
-sed -i 'S/127.0.0.1/0.0.0.0/g' etc/mongod.conf &>> LOGFILE
+sed -i 's/127.0.0.1/0.0.0.0/g' /etc/mongod.conf &>> $LOGFILE
 
 VALIDATE $? remote acress to mongo db
 
 systemctl restart mongod 
 
-VALIDATE $? "ReStarting mongodb" &>> LOGFILE
+VALIDATE $? "ReStarting mongodb" &>> $LOGFILE
