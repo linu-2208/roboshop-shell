@@ -5,7 +5,7 @@ SG_ID=sg-07078f1c35acb359b
 ZONE_ID=Z01032471U3T3F8BDO6LI
 DOMAIN_NAME=myver.shop
 INSTANCES=("mongodb" "redis" "mysql" "rabbitmq" "catalogue" 
- "shipping" "payment" "dispatch" "web")
+ "shipping" "payment" "dispatch" "web" "user" "cart")
 
 for i in "${INSTANCES[@]}"
 do 
